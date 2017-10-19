@@ -8,10 +8,12 @@ namespace NumberTriangle
     class Program
     {
         private static int triangleNumber, triangleHeight;
+
         static void Main(string[] args)
         {
             AskTriangleInputs();
-            Triangle triangle = new Triangle();
+            CreateTriangle();
+            Console.ReadLine();
         }
 
         private static void AskTriangleInputs()
@@ -36,6 +38,20 @@ namespace NumberTriangle
             {
                 Console.WriteLine("Invalid Input, try again!");
                 AskTriangleInputs();
+            }
+        }
+
+        private static void CreateTriangle()
+        {
+            int currentHeight = triangleHeight;
+            for (int i = 0; i < triangleHeight; i++)
+            {
+                Console.WriteLine();
+                for (int j = currentHeight; j > 0; j--)
+                {
+                    Console.Write(triangleNumber);
+                }
+                currentHeight--;
             }
         }
     }
