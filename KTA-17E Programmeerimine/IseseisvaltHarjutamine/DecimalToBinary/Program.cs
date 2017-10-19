@@ -25,23 +25,45 @@ namespace DecimalToBinary
 
         private static string ConvertDecimalToBinary(int decimalValue)
         {
-            //int decimalValue = 294;
             StringBuilder sb = new StringBuilder();
+            int counter = 0;
             while (decimalValue != 0)
             {
                 if (decimalValue % 2 == 0)
                 {
+                    
+                    if (counter == 4)
+                    {
+                        sb.Append(" ");
+                        counter = 0;
+                    }
                     sb.Append(0);
                     decimalValue = decimalValue / 2;
+                    counter++;
+
                 }
                 else if (decimalValue % 2 == 1)
                 {
+                    
+                    if (counter == 4)
+                    {
+                        sb.Append(" ");
+                        counter = 0;
+                    }
                     sb.Append(1);
                     decimalValue = decimalValue / 2;
+                    counter++;
                 }
             }
-            string binary = sb.ToString();
-            return binary;
+            string binaryReversed = sb.ToString();
+
+            StringBuilder sbTwo = new StringBuilder();
+            for (int i = binaryReversed.Length - 1; i >= 0; i--)
+            {
+                sbTwo.Append(binaryReversed[i]);
+            }
+
+            return sbTwo.ToString();
         }
     }
 }
