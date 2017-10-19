@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberTriangle", "NumberTriangle\NumberTriangle.csproj", "{04F4F1D0-72CE-4BEE-9D3E-EE818231F693}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecimalToBinary", "DecimalToBinary\DecimalToBinary.csproj", "{BAE1FF26-9D7C-4504-9332-6DAC4CBEF84F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{04F4F1D0-72CE-4BEE-9D3E-EE818231F693}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04F4F1D0-72CE-4BEE-9D3E-EE818231F693}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04F4F1D0-72CE-4BEE-9D3E-EE818231F693}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAE1FF26-9D7C-4504-9332-6DAC4CBEF84F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAE1FF26-9D7C-4504-9332-6DAC4CBEF84F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAE1FF26-9D7C-4504-9332-6DAC4CBEF84F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAE1FF26-9D7C-4504-9332-6DAC4CBEF84F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
