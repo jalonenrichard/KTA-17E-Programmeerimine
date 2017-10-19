@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace NumberTriangle
+﻿namespace NumberTriangle
 {
     class Triangle
     {
-        private int _triangleNumber, _triangleHeight;
 
-        public Triangle(int triangleNumber, int triangleHeight)
+        private int _triangleBase, _triangleHeight;
+
+        public Triangle(int triangleBase, int triangleHeight)
         {
-            _triangleNumber = triangleNumber;
+            _triangleBase = triangleBase;
             _triangleHeight = triangleHeight;
         }
-
     }
 }
