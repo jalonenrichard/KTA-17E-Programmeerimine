@@ -8,6 +8,7 @@
         Title="Homemade Calculator" Height="450" Width="400" ResizeMode="NoResize">
 
     <Border Padding="10">
+        
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -23,7 +24,10 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <!-- Calculation display -->
+            <!-- Secondary display -->
+            <TextBlock x:Name="Calculator_Secondary_Display" Grid.ColumnSpan="4" TextAlignment="Right" />
+            
+            <!-- Calculation main display -->
             <TextBlock x:Name="Calculator_Display" Text="0" Grid.ColumnSpan="4" TextAlignment="Right" FontSize="50px" VerticalAlignment="Center" Background="#80F5F5F5"/>
 
             <!-- Numbers -->
@@ -44,7 +48,7 @@
             <Button x:Name="Operation_Subtract" Click="Operation_Subtract_Click" Grid.Column="3" Grid.Row="2" Content="-" />
             <Button x:Name="Operation_Multiply" Click="Operation_Multiply_Click" Grid.Column="3" Grid.Row="1" Content="X" />
             <Button x:Name="Operation_Divide" Click="Operation_Divide_Click" Grid.Column="2" Grid.Row="4" Content="/" />
-            <Button x:Name="Operation_DivideFraction" Click="Operation_DivideFraction_Click" Grid.Column="0" Grid.Row="4" Content="%" />
+            <Button x:Name="Operation_Clear" Click="Operation_Clear_Click" Grid.Column="0" Grid.Row="4" Content="C" />
         </Grid>
 
     </Border>

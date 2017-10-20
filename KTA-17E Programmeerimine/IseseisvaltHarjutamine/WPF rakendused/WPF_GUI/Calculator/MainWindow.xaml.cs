@@ -19,93 +19,131 @@ namespace Calculator
     /// </summary>
     public partial class MainWindow : Window
     {
-        private int _firstNumber = 0, _secondNumber = 0;
-        private double _answer = 0;
-        private string _currentText;
+        private double _firstNumber, _secondNumber;// _answer;
+        private string _currentText, _lastOperation, _secondaryText;
         public MainWindow()
         {
             InitializeComponent();
+            ResetCalc();
             _currentText = Calculator_Display.Text;
+            //Calculator calculator = new Calculator();
         }
 
         private void Number_0_Click(object sender, RoutedEventArgs e)
         {
             ChangeMainText("0");
+            ChangeSecondaryText("0");
         }
 
         private void Number_1_Click(object sender, RoutedEventArgs e)
         {
             ChangeMainText("1");
+            ChangeSecondaryText("1");
         }
 
         private void Number_2_Click(object sender, RoutedEventArgs e)
         {
             ChangeMainText("2");
+            ChangeSecondaryText("2");
         }
 
         private void Number_3_Click(object sender, RoutedEventArgs e)
         {
             ChangeMainText("3");
+            ChangeSecondaryText("3");
         }
 
         private void Number_4_Click(object sender, RoutedEventArgs e)
         {
             ChangeMainText("4");
+            ChangeSecondaryText("4");
         }
 
         private void Number_5_Click(object sender, RoutedEventArgs e)
         {
             ChangeMainText("5");
+            ChangeSecondaryText("5");
         }
 
         private void Number_6_Click(object sender, RoutedEventArgs e)
         {
             ChangeMainText("6");
+            ChangeSecondaryText("6");
         }
 
         private void Number_7_Click(object sender, RoutedEventArgs e)
         {
             ChangeMainText("7");
+            ChangeSecondaryText("7");
         }
 
         private void Number_8_Click(object sender, RoutedEventArgs e)
         {
             ChangeMainText("8");
+            ChangeSecondaryText("8");
         }
 
         private void Number_9_Click(object sender, RoutedEventArgs e)
         {
             ChangeMainText("9");
+            ChangeSecondaryText("9");
         }
 
         private void Operation_Equals_Click(object sender, RoutedEventArgs e)
         {
-
+            _secondNumber = double.Parse(Calculator_Display.Text);
+            Calculator_Secondary_Display.Text = "";
+            switch (_lastOperation)
+            {
+                case "+":
+                    Calculator_Display.Text = (_firstNumber + _secondNumber).ToString();
+                    SoftReset();
+                    break;
+                case "-":
+                    Calculator_Display.Text = (_firstNumber - _secondNumber).ToString();
+                    SoftReset();
+                    break;
+                case "x":
+                    Calculator_Display.Text = (_firstNumber * _secondNumber).ToString();
+                    SoftReset();
+                    break;
+                case "/":
+                    Calculator_Display.Text = (_firstNumber / _secondNumber).ToString();
+                    SoftReset();
+                    break;
+            }
         }
 
         private void Operation_Add_Click(object sender, RoutedEventArgs e)
         {
+            ChangeSecondaryText("+");
+            OperationClicked("+");
 
         }
 
         private void Operation_Subtract_Click(object sender, RoutedEventArgs e)
         {
+            ChangeSecondaryText("-");
+            OperationClicked("-");
 
         }
 
         private void Operation_Multiply_Click(object sender, RoutedEventArgs e)
         {
+            ChangeSecondaryText("x");
+            OperationClicked("x");
 
         }
 
         private void Operation_Divide_Click(object sender, RoutedEventArgs e)
         {
-
+            ChangeSecondaryText("/");
+            OperationClicked("/");
         }
 
-        private void Operation_DivideFraction_Click(object sender, RoutedEventArgs e)
+        private void Operation_Clear_Click(object sender, RoutedEventArgs e)
         {
-
+            ResetCalc();
         }
 
         private void ChangeMainText(string inputNumber)
@@ -120,6 +158,109 @@ namespace Calculator
                 _currentText = _currentText + inputNumber;
                 Calculator_Display.Text = _currentText;
             }
+        }
+
+        private void ChangeSecondaryText(string inputString)
+        {
+            if (Calculator_Display.Text != "0" && _currentText != "0")
+            {
+                Calculator_Secondary_Display.Text += inputString;
+            }
+        }
+
+        private void OperationClicked(string operation)
+        {
+            switch (operation)
+            {
+                case "+":
+                    if (_firstNumber == 0 || _currentText == "0")
+                    {
+                        _firstNumber = double.Parse(Calculator_Display.Text);
+                        _currentText = "0";
+                        _lastOperation = "+";
+                        return;
+                    }
+                    _firstNumber = AddTwoNumbers(_firstNumber, int.Parse(Calculator_Display.Text));
+                    Calculator_Display.Text = _firstNumber.ToString();
+                    _currentText = "0";
+                    _lastOperation = "+";
+                    break;
+                case "-":
+                    if (_firstNumber == 0 || _currentText == "0")
+                    {
+                        _firstNumber = double.Parse(Calculator_Display.Text);
+                        _currentText = "0";
+                        _lastOperation = "-";
+                        return;
+                    }
+                    _firstNumber = SubtractTwoNumbers(_firstNumber, int.Parse(Calculator_Display.Text));
+                    Calculator_Display.Text = _firstNumber.ToString();
+                    _currentText = "0";
+                    _lastOperation = "-";
+                    break;
+                case "x":
+                    if (_firstNumber == 0 || _currentText == "0")
+                    {
+                        _firstNumber = double.Parse(Calculator_Display.Text);
+                        _currentText = "0";
+                        _lastOperation = "x";
+                        return;
+                    }
+                    _firstNumber = MultiplyTwoNumbers(_firstNumber, int.Parse(Calculator_Display.Text));
+                    Calculator_Display.Text = _firstNumber.ToString();
+                    _currentText = "0";
+                    _lastOperation = "x";
+                    break;
+                case "/":
+                    if (_firstNumber == 0 || _currentText == "0")
+                    {
+                        _firstNumber = double.Parse(Calculator_Display.Text);
+                        _currentText = "0";
+                        _lastOperation = "/";
+                        return;
+                    }
+                    _firstNumber = DivideTwoNumbers(_firstNumber, int.Parse(Calculator_Display.Text));
+                    Calculator_Display.Text = _firstNumber.ToString();
+                    _currentText = "0";
+                    _lastOperation = "/";
+                    break;
+            }
+        }
+
+        private void ResetCalc()
+        {
+            _currentText = "0";
+            _secondaryText = "";
+            _firstNumber = 0;
+            _secondNumber = 0;
+            Calculator_Display.Text = "0";
+        }
+
+        private void SoftReset()
+        {
+            _firstNumber = 0;
+            _secondNumber = 0;
+            _currentText = "0";
+        }
+
+        private double AddTwoNumbers(double numOne, double numTwo)
+        {
+            return numOne + numTwo;
+        }
+
+        private double SubtractTwoNumbers(double numOne, double numTwo)
+        {
+            return numOne - numTwo;
+        }
+
+        private double MultiplyTwoNumbers(double numOne, double numTwo)
+        {
+            return numOne * numTwo;
+        }
+
+        private double DivideTwoNumbers(double numOne, double numTwo)
+        {
+            return numOne / numTwo;
         }
     }
 }
