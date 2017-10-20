@@ -20,11 +20,11 @@ namespace Calculator
     public partial class MainWindow : Window
     {
         private double _firstNumber, _secondNumber;// _answer;
-        private string _currentText, _lastOperation, _secondaryText;
+        private string _currentText, _lastOperation;//, _secondaryText;
         public MainWindow()
         {
             InitializeComponent();
-            ResetCalc();
+            HardReset();
             _currentText = Calculator_Display.Text;
             //Calculator calculator = new Calculator();
         }
@@ -91,6 +91,10 @@ namespace Calculator
 
         private void Operation_Equals_Click(object sender, RoutedEventArgs e)
         {
+            if (_firstNumber == 0)
+            {
+                return;
+            }
             _secondNumber = double.Parse(Calculator_Display.Text);
             Calculator_Secondary_Display.Text = "";
             switch (_lastOperation)
@@ -143,7 +147,7 @@ namespace Calculator
 
         private void Operation_Clear_Click(object sender, RoutedEventArgs e)
         {
-            ResetCalc();
+            HardReset();
         }
 
         private void ChangeMainText(string inputNumber)
@@ -227,13 +231,13 @@ namespace Calculator
             }
         }
 
-        private void ResetCalc()
+        private void HardReset()
         {
             _currentText = "0";
-            _secondaryText = "";
             _firstNumber = 0;
             _secondNumber = 0;
             Calculator_Display.Text = "0";
+            Calculator_Secondary_Display.Text = "";
         }
 
         private void SoftReset()
