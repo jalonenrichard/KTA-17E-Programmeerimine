@@ -1,0 +1,51 @@
+﻿<Window x:Class="Calculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calculator"
+        mc:Ignorable="d"
+        Title="Homemade Calculator" Height="450" Width="400" ResizeMode="NoResize">
+
+    <Border Padding="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Calculation display -->
+            <TextBlock x:Name="Calculator_Display" Text="0" Grid.ColumnSpan="4" TextAlignment="Right" FontSize="50px" VerticalAlignment="Center" Background="#80F5F5F5"/>
+
+            <!-- Numbers -->
+            <Button x:Name="Number_0" Click="Number_0_Click" Style="{StaticResource NumberStyle}" Grid.Column="1" Grid.Row="4" Content="0" />
+            <Button x:Name="Number_1" Click="Number_1_Click" Style="{StaticResource NumberStyle}" Grid.Column="0" Grid.Row="3" Content="1" />
+            <Button x:Name="Number_2" Click="Number_2_Click" Style="{StaticResource NumberStyle}" Grid.Column="1" Grid.Row="3" Content="2" />
+            <Button x:Name="Number_3" Click="Number_3_Click" Style="{StaticResource NumberStyle}" Grid.Column="2" Grid.Row="3" Content="3" />
+            <Button x:Name="Number_4" Click="Number_4_Click" Style="{StaticResource NumberStyle}" Grid.Column="0" Grid.Row="2" Content="4" />
+            <Button x:Name="Number_5" Click="Number_5_Click" Style="{StaticResource NumberStyle}" Grid.Column="1" Grid.Row="2" Content="5" />
+            <Button x:Name="Number_6" Click="Number_6_Click" Style="{StaticResource NumberStyle}" Grid.Column="2" Grid.Row="2" Content="6" />
+            <Button x:Name="Number_7" Click="Number_7_Click" Style="{StaticResource NumberStyle}" Grid.Column="0" Grid.Row="1" Content="7" />
+            <Button x:Name="Number_8" Click="Number_8_Click" Style="{StaticResource NumberStyle}" Grid.Column="1" Grid.Row="1" Content="8" />
+            <Button x:Name="Number_9" Click="Number_9_Click" Style="{StaticResource NumberStyle}" Grid.Column="2" Grid.Row="1" Content="9" />
+
+            <!-- Operations -->
+            <Button x:Name="Operation_Equals" Click="Operation_Equals_Click" Grid.Column="3" Grid.Row="4" Content="=" />
+            <Button x:Name="Operation_Add" Click="Operation_Add_Click" Grid.Column="3" Grid.Row="3" Content="+" />
+            <Button x:Name="Operation_Subtract" Click="Operation_Subtract_Click" Grid.Column="3" Grid.Row="2" Content="-" />
+            <Button x:Name="Operation_Multiply" Click="Operation_Multiply_Click" Grid.Column="3" Grid.Row="1" Content="X" />
+            <Button x:Name="Operation_Divide" Click="Operation_Divide_Click" Grid.Column="2" Grid.Row="4" Content="/" />
+            <Button x:Name="Operation_DivideFraction" Click="Operation_DivideFraction_Click" Grid.Column="0" Grid.Row="4" Content="%" />
+        </Grid>
+
+    </Border>
+</Window>
