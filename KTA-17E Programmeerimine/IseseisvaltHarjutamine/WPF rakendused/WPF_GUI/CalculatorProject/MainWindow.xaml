@@ -1,14 +1,14 @@
-﻿<Window x:Class="Calculator.MainWindow"
+﻿<Window x:Class="CalculatorProject.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Calculator"
+        xmlns:local="clr-namespace:CalculatorProject"
         mc:Ignorable="d"
-        Title="Homemade Calculator" Height="450" Width="400" ResizeMode="NoResize">
+        Title="MainWindow" Height="600" Width="500" ResizeMode="NoResize">
 
     <Border Padding="10">
-        
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -26,9 +26,9 @@
 
             <!-- Secondary display -->
             <TextBlock x:Name="Calculator_Secondary_Display" Grid.ColumnSpan="4" TextAlignment="Right" />
-            
+
             <!-- Calculation main display -->
-            <TextBlock x:Name="Calculator_Display" Text="0" Grid.ColumnSpan="4" TextAlignment="Right" FontSize="50px" VerticalAlignment="Center" Background="#80F5F5F5"/>
+            <TextBlock x:Name="Calculator_Display" Grid.ColumnSpan="4" TextAlignment="Right" FontSize="50px" VerticalAlignment="Center" Background="#80F5F5F5"/>
 
             <!-- Numbers -->
             <Button x:Name="Number_0" Click="Number_0_Click" Style="{StaticResource NumberStyle}" Grid.Column="1" Grid.Row="4" Content="0" />
@@ -48,7 +48,9 @@
             <Button x:Name="Operation_Subtract" Click="Operation_Subtract_Click" Grid.Column="3" Grid.Row="2" Content="-" />
             <Button x:Name="Operation_Multiply" Click="Operation_Multiply_Click" Grid.Column="3" Grid.Row="1" Content="X" />
             <Button x:Name="Operation_Divide" Click="Operation_Divide_Click" Grid.Column="2" Grid.Row="4" Content="/" />
-            <Button x:Name="Operation_Clear" Click="Operation_Clear_Click" Grid.Column="0" Grid.Row="4" Content="C" />
+            
+            <!-- Clear Button -->
+            <Button x:Name="Clear_Button" Click="Clear_Click" Grid.Column="0" Grid.Row="4" Content="C" />
         </Grid>
 
     </Border>
