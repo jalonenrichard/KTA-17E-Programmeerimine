@@ -235,7 +235,7 @@ namespace TicTacToeProject
             }
             #endregion
             // When there is no winner
-            if (!_results.Any(result => result == MarkType.Free))
+            else if (!_results.Any(result => result == MarkType.Free))
             {
                 //Game ends
                 _gameEnded = true;
