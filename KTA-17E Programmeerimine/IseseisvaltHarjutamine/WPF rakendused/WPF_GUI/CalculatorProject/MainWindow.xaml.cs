@@ -19,10 +19,12 @@ namespace CalculatorProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Constructor
         public MainWindow()
         {
             InitializeComponent();
         }
+        #endregion
 
         #region Number Buttons
 
@@ -47,7 +49,7 @@ namespace CalculatorProject
             //Add the content of the pressed button to the current display string
             InsertTextValue(this.Number_1.Content.ToString());
         }
-        
+
         /// <summary>
         /// Number 2 button is clicked
         /// </summary>
@@ -141,7 +143,7 @@ namespace CalculatorProject
         #region Operation Buttons
 
         /// <summary>
-        /// When the "=" button is pressed
+        /// When the "=" button is pressed calculate input
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -152,22 +154,22 @@ namespace CalculatorProject
 
         private void Operation_Add_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void Operation_Subtract_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void Operation_Multiply_Click(object sender, RoutedEventArgs e)
         {
-
+           
         }
 
         private void Operation_Divide_Click(object sender, RoutedEventArgs e)
         {
-
+           
         }
 
         #endregion
@@ -188,7 +190,7 @@ namespace CalculatorProject
         #endregion
 
         #region Private Helpers
-        
+
         /// <summary>
         /// Change the Calculator display text adding the numbers our user has pressed
         /// </summary>
@@ -198,20 +200,43 @@ namespace CalculatorProject
             //If the added number is 0 and the display text is already empty...
             if (textValue == "0" && this.Calculator_Display.Text == string.Empty)
             {
-                //Do nothing
                 return;
             }
             //Otherwise add the string to the existing display text
             this.Calculator_Display.Text += textValue;
         }
 
+        #endregion
+
         /// <summary>
         /// Calculate the given equation and output the result
         /// </summary>
         private void CalculateEquation()
         {
-            throw new NotImplementedException();
+            //TODO: Equals button logic
         }
-        #endregion
+
+
+        /// <summary>
+        /// Accepts a character and returns the known <see cref="OperationType\"/>
+        /// </summary>
+        /// <param name="inputCharacter"></param>
+        /// <returns></returns>
+        private OperationType GetOperationType(char inputCharacter)
+        {
+            switch (inputCharacter)
+            {
+                case '+':
+                    return OperationType.Add;
+                case '-':
+                    return OperationType.Subtract;
+                case 'x':
+                    return OperationType.Multiply;
+                case '/':
+                    return OperationType.Divide;
+                default:
+                    throw new InvalidOperationException("Invalid operation");
+            }
+        }
     }
 }
