@@ -36,6 +36,7 @@ namespace CalculatorProject
         /// </summary>
         public string Operation { get; private set; }
 
+
         #endregion
 
         #region Constructor
@@ -172,6 +173,8 @@ namespace CalculatorProject
         {
             //Calculate the equation
             OperationPressed(this.Operation);
+            //Reset the left side for future operations
+            this.LeftSide = 0;
         }
 
         /// <summary>
@@ -272,17 +275,25 @@ namespace CalculatorProject
         /// </summary>
         private void OperationPressed(string operand)
         {
+
+
             //If the left side of the operation is empty
             if (this.LeftSide == 0)
             {
+                double helper = 0;
                 //Set the left side to be the current text
-                this.LeftSide = int.Parse(this.Calculator_Display.Text);
-                this.Operation = operand;
+                if (double.TryParse(this.Calculator_Display.Text, out helper))
+                {
+                    this.LeftSide = helper;
+                    //Change the operand
+                    this.Operation = operand;
+                }
+
             }
             else
             {
                 //Set the right side of the equation to be equal to the current text
-                this.RightSide = int.Parse(this.Calculator_Display.Text);
+                this.RightSide = double.Parse(this.Calculator_Display.Text);
                 //Calculate the equation using the last operand
                 CalculateAnswer(this.Operation);
                 //And add switch the current operand
@@ -304,7 +315,7 @@ namespace CalculatorProject
                     // set the right side to 0
                     this.RightSide = 0;
                     // and display the result
-                    Calculator_Display.Text = this.LeftSide.ToString();
+                    Calculator_Display.Text = this.LeftSide.ToString("#.####");
                     break;
                 //when the operation is -, divide the left and right side, store the new value as the new left side
                 case "-":
@@ -312,7 +323,7 @@ namespace CalculatorProject
                     // set the right side to 0
                     this.RightSide = 0;
                     // and display the result
-                    Calculator_Display.Text = this.LeftSide.ToString();
+                    Calculator_Display.Text = this.LeftSide.ToString("#.####");
                     break;
                 //when the operation is X, multiply the left and right side, store the new value as the new left side
                 case "X":
@@ -320,7 +331,7 @@ namespace CalculatorProject
                     // set the right side to 0
                     this.RightSide = 0;
                     // and display the result
-                    Calculator_Display.Text = this.LeftSide.ToString();
+                    Calculator_Display.Text = this.LeftSide.ToString("#.####");
                     break;
                 //when the operation is /, divide the left and right side, store the new value as the new left side
                 case "/":
@@ -333,7 +344,7 @@ namespace CalculatorProject
                     // set the right side to 0
                     this.RightSide = 0;
                     // and display the result
-                    Calculator_Display.Text = this.LeftSide.ToString();
+                    Calculator_Display.Text = this.LeftSide.ToString("#.####");
                     break;
             }
         }
