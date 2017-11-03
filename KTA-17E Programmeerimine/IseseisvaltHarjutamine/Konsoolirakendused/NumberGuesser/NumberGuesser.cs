@@ -51,6 +51,7 @@ namespace NumberGuesserProject
         {
             //Ask the user to pick a random number between 0 and MaximumNumber
             Console.WriteLine($"Think of a number between 0 and {MaximumNumber} and i will try to guess it");
+            Console.WriteLine("Press any key when you have thought of the number.");
             Console.ReadLine();
         }
 
@@ -69,7 +70,7 @@ namespace NumberGuesserProject
             {
                 this.NumberOfGuesses++;
                 //Ask if the number is between minimum value (0 at first) and maximum value / 2 (50) at first
-                Console.WriteLine($"Is the number between {this.CurrentGuessMinimum} and {this.CurrentGuessMaximum}?");
+                Console.WriteLine($"Is the number between {this.CurrentGuessMinimum} and {this.CurrentGuessMaximum}? (y/n)");
                 //Get the user input
                 string userAnswer = Console.ReadLine();
 
@@ -98,7 +99,7 @@ namespace NumberGuesserProject
                 {
                     NumberOfGuesses++;
                     //Try to guess the number by asking if it's the lower of the 2
-                    Console.WriteLine($"Is your number {this.CurrentGuessMinimum}?");
+                    Console.WriteLine($"Is your number {this.CurrentGuessMinimum}? (y/n)");
                     userAnswer = Console.ReadLine();
                     //If it is the lower one
                     if (userAnswer?.ToLower().FirstOrDefault() == 'y')
