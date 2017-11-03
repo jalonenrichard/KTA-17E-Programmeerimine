@@ -19,10 +19,31 @@ namespace CalculatorProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Public Properties
+
+        /// <summary>
+        /// Left side of the equation
+        /// </summary>
+        public double LeftSide { get; private set; }
+
+        /// <summary>
+        /// Right side of the equation
+        /// </summary>
+        public double RightSide { get; private set; }
+
+        /// <summary>
+        /// Last operation
+        /// </summary>
+        public string Operation { get; private set; }
+
+        #endregion
+
         #region Constructor
         public MainWindow()
         {
             InitializeComponent();
+            //Clear the screen when the calculator is fired up
+            Clear_Click(null, null);
         }
         #endregion
 
@@ -149,27 +170,56 @@ namespace CalculatorProject
         /// <param name="e"></param>
         private void Operation_Equals_Click(object sender, RoutedEventArgs e)
         {
-            CalculateEquation();
+            //Calculate the equation
+            OperationPressed(this.Operation);
         }
 
+        /// <summary>
+        /// When the "+" button is pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Operation_Add_Click(object sender, RoutedEventArgs e)
         {
-            
+            //Store the value as left side
+            //If left side is already filled, divide the numbers and store the new operand
+            OperationPressed(Operation_Add.Content.ToString());
         }
 
+        /// <summary>
+        /// When the "-" button is pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Operation_Subtract_Click(object sender, RoutedEventArgs e)
         {
-            
+            //Store the value as left side
+            //If left side is already filled, divide the numbers and store the new operand
+            OperationPressed(Operation_Subtract.Content.ToString());
         }
 
+        /// <summary>
+        /// When the "x" button is pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Operation_Multiply_Click(object sender, RoutedEventArgs e)
         {
-           
+            //Store the value as left side
+            //If left side is already filled, divide the numbers and store the new operand
+            OperationPressed(Operation_Multiply.Content.ToString());
         }
 
+        /// <summary>
+        /// When the "/" button is pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Operation_Divide_Click(object sender, RoutedEventArgs e)
         {
-           
+            //Store the value as left side
+            //If left side is already filled, divide the numbers and store the new operand
+            OperationPressed(Operation_Divide.Content.ToString());
         }
 
         #endregion
@@ -177,14 +227,18 @@ namespace CalculatorProject
         #region Clear Button
 
         /// <summary>
-        /// Clears the Calculator Display
+        /// Clears the Calculator Display and resets all values
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
             //Set the Text of Calculator_Display TextBlock to an empty string
-            this.Calculator_Display.Text = string.Empty;
+            this.Calculator_Display.Text = "0";
+            //Reset the left and right side values of the operation and the operand
+            this.LeftSide = 0;
+            this.RightSide = 0;
+            this.Operation = string.Empty;
         }
 
         #endregion
@@ -197,46 +251,93 @@ namespace CalculatorProject
         /// <param name="textValue">The pressed number button content as a string</param>
         private void InsertTextValue(string textValue)
         {
-            //If the added number is 0 and the display text is already empty...
-            if (textValue == "0" && this.Calculator_Display.Text == string.Empty)
+            //If the current calculator screen value is 0 and 0 is the pressed button
+            if (textValue == "0" && this.Calculator_Display.Text == "0")
             {
+                return;
+            }
+            //if the current calculator screen value is 0 and the pressed button is anything
+            else if ((this.Calculator_Display.Text == "0") || (this.LeftSide != 0 && RightSide == 0 && this.Calculator_Display.Text == this.LeftSide.ToString()))
+            {
+                //Set the text to be the pressed button so the 0 gets deleted
+                this.Calculator_Display.Text = textValue;
                 return;
             }
             //Otherwise add the string to the existing display text
             this.Calculator_Display.Text += textValue;
         }
 
-        #endregion
-
         /// <summary>
-        /// Calculate the given equation and output the result
+        /// Store the left or right side value when an operation is pressed
         /// </summary>
-        private void CalculateEquation()
+        private void OperationPressed(string operand)
         {
-            //TODO: Equals button logic
-        }
-
-
-        /// <summary>
-        /// Accepts a character and returns the known <see cref="OperationType\"/>
-        /// </summary>
-        /// <param name="inputCharacter"></param>
-        /// <returns></returns>
-        private OperationType GetOperationType(char inputCharacter)
-        {
-            switch (inputCharacter)
+            //If the left side of the operation is empty
+            if (this.LeftSide == 0)
             {
-                case '+':
-                    return OperationType.Add;
-                case '-':
-                    return OperationType.Subtract;
-                case 'x':
-                    return OperationType.Multiply;
-                case '/':
-                    return OperationType.Divide;
-                default:
-                    throw new InvalidOperationException("Invalid operation");
+                //Set the left side to be the current text
+                this.LeftSide = int.Parse(this.Calculator_Display.Text);
+                this.Operation = operand;
+            }
+            else
+            {
+                //Set the right side of the equation to be equal to the current text
+                this.RightSide = int.Parse(this.Calculator_Display.Text);
+                //Calculate the equation using the last operand
+                CalculateAnswer(this.Operation);
+                //And add switch the current operand
+                this.Operation = operand;
             }
         }
+
+        /// <summary>
+        /// Calculate the answer of the equation
+        /// </summary>
+        private void CalculateAnswer(string operand)
+        {
+            //According to Operation, which is string type, do the according calculation and display it
+            switch (operand)
+            {
+                //when the operation is +, add the left and right side, store the new value as the new left side
+                case "+":
+                    this.LeftSide += this.RightSide;
+                    // set the right side to 0
+                    this.RightSide = 0;
+                    // and display the result
+                    Calculator_Display.Text = this.LeftSide.ToString();
+                    break;
+                //when the operation is -, divide the left and right side, store the new value as the new left side
+                case "-":
+                    this.LeftSide -= this.RightSide;
+                    // set the right side to 0
+                    this.RightSide = 0;
+                    // and display the result
+                    Calculator_Display.Text = this.LeftSide.ToString();
+                    break;
+                //when the operation is X, multiply the left and right side, store the new value as the new left side
+                case "X":
+                    this.LeftSide *= this.RightSide;
+                    // set the right side to 0
+                    this.RightSide = 0;
+                    // and display the result
+                    Calculator_Display.Text = this.LeftSide.ToString();
+                    break;
+                //when the operation is /, divide the left and right side, store the new value as the new left side
+                case "/":
+                    //when trying to divide by 0
+                    if (this.RightSide == 0)
+                    {
+                        return;
+                    }
+                    this.LeftSide /= this.RightSide;
+                    // set the right side to 0
+                    this.RightSide = 0;
+                    // and display the result
+                    Calculator_Display.Text = this.LeftSide.ToString();
+                    break;
+            }
+        }
+
+        #endregion
     }
 }
