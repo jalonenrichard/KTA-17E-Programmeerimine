@@ -10,12 +10,17 @@ namespace _01Allahindlus
     {
         static void Main(string[] args)
         {
-            Console.Write("Price: ");
-            double price = double.Parse(Console.ReadLine());
-            DiscountCalc calc = new DiscountCalc(price);
+            
+            DiscountCalc calc = new DiscountCalc();
+            calc.AskUSerInput();
+            Console.WriteLine();
+
             calc.IsFrequent = false;
             calc.CalculatePrice();
             calc.DisplayCustomerPrice();
+
+            Console.WriteLine();
+
             calc.IsFrequent = true;
             calc.CalculatePrice();
             calc.DisplayFrequentPrice();

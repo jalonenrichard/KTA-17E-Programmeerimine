@@ -16,9 +16,23 @@ namespace _01Allahindlus
         private double FrequentPercent { get; set; }
         private double CustomerPercent { get; set; }
 
-        public DiscountCalc(double price)
+        public DiscountCalc()
         {
-            Price = price;
+
+        }
+
+        public void AskUSerInput()
+        {
+            Console.Write("Price: ");
+            double price;
+            if (!double.TryParse(Console.ReadLine(), out price))
+            {
+                AskUSerInput();
+            }
+            else
+            {
+                Price = price;
+            }
         }
 
         public void CalculatePrice()
@@ -41,8 +55,16 @@ namespace _01Allahindlus
                 }
                 else
                 {
-                    FrequentPercent = 0.6;
-                    FrequentPrice = Price * FrequentPercent;
+                    if (Price > 0 && Price < 50)
+                    {
+                        FrequentPercent = 0;
+                        FrequentPrice = Price;
+                    }
+                    else
+                    {
+                        FrequentPercent = 0.6;
+                        FrequentPrice = Price * FrequentPercent;
+                    }
                 }
             }
             else
@@ -63,8 +85,16 @@ namespace _01Allahindlus
                 }
                 else
                 {
-                    CustomerPercent = 0.7;
-                    CustomerPrice = Price * CustomerPercent;
+                    if (Price > 0 && Price < 50)
+                    {
+                        CustomerPercent = 0;
+                        CustomerPrice = Price;
+                    }
+                    else
+                    {
+                        CustomerPercent = 0.7;
+                        CustomerPrice = Price * CustomerPercent;
+                    }
                 }
             }
 
@@ -72,7 +102,11 @@ namespace _01Allahindlus
         public void DisplayCustomerPrice()
         {
             Console.WriteLine("Regular Customer");
-            if (CustomerPercent == 0.9)
+            if (CustomerPercent == 0)
+            {
+                Console.WriteLine("Discount: 0%");
+            }
+            else if (CustomerPercent == 0.9)
             {
                 Console.WriteLine("Discount: 10%");
 
@@ -91,7 +125,11 @@ namespace _01Allahindlus
         public void DisplayFrequentPrice()
         {
             Console.WriteLine("Frequent");
-            if (FrequentPercent == 0.8)
+            if (FrequentPercent == 0)
+            {
+                Console.WriteLine("Discount: 0%");
+            }
+            else if (FrequentPercent == 0.8)
             {
                 Console.WriteLine("Discount: 20%");
 
