@@ -10,7 +10,7 @@ namespace _01Allahindlus
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Price: ");
+            Console.Write("Price: ");
             double price = double.Parse(Console.ReadLine());
             DiscountCalc calc = new DiscountCalc(price);
             calc.IsFrequent = false;

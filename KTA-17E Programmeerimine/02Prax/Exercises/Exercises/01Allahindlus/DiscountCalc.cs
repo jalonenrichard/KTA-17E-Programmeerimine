@@ -29,7 +29,7 @@ namespace _01Allahindlus
                 {
                     Console.WriteLine($"{Price} is not a vaid input.");
                 }
-                if (Price > 50 && Price < 250)
+                if (Price >= 50 && Price < 250)
                 {
                     FrequentPercent = 0.8;
                     FrequentPrice = Price * FrequentPercent;
@@ -51,7 +51,7 @@ namespace _01Allahindlus
                 {
                     Console.WriteLine($"{Price} is not a vaid input.");
                 }
-                if (Price > 50 && Price < 250)
+                if (Price >= 50 && Price < 250)
                 {
                     CustomerPercent = 0.9;
                     CustomerPrice = Price * CustomerPercent;
