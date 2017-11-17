@@ -15,7 +15,8 @@ namespace ExcuseGenerator
         {
             AskInput();
             AddToArray();
-            Console.WriteLine(excuseArray[ChooseExcuse()]);
+            Console.WriteLine();
+            Console.WriteLine($"Random excuse: {excuseArray[ChooseExcuse()].Trim()}");
             Console.ReadLine();
         }
 
