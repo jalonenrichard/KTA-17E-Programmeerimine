@@ -30,6 +30,7 @@ namespace RestoranReceiptPrinter
 
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
             Console.WriteLine("Some text about the company");
             Console.WriteLine("------------------------------");
 
@@ -40,11 +41,11 @@ namespace RestoranReceiptPrinter
 
             //Display results
             Console.WriteLine("------------------------------");
-            Console.WriteLine($"Subtotal: {currentPrice.ToString("#.##")}");
+            Console.WriteLine($"Subtotal: €{currentPrice.ToString("#.##")}");
             
-            Console.WriteLine($"15% Gratuity: {percentage.ToString("#.##")}");
+            Console.WriteLine($"15% Gratuity: €{percentage.ToString("#.##")}");
 
-            Console.WriteLine($"Price: {totalPrice.ToString("#.##")}");
+            Console.WriteLine($"Price: €{totalPrice.ToString("#.##")}");
             Console.WriteLine("------------------------------");
             Console.WriteLine("Press any key to continue");
             Console.ReadLine();
