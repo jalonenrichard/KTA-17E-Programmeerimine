@@ -63,10 +63,12 @@ namespace RestoranReceiptPrinter
                 bool isNumber = double.TryParse(Console.ReadLine(), out currentPrice);
                 if (!isNumber)
                 {
+                    // keep asking, inform about invalid input
                     Console.WriteLine("Invalid input");
                 }
                 else
                 {
+                    // if the parsing succeeded, add the price to our List
                     foodList.Add(currentPrice);
                 }
             }
