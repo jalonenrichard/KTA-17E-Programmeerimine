@@ -30,7 +30,10 @@ namespace RestoranReceiptPrinter
 
         static void Main(string[] args)
         {
+            // UTF8 encoding to correctly display '€' sign
             Console.OutputEncoding = Encoding.UTF8;
+
+            // Information about the company
             Console.WriteLine("Some text about the company");
             Console.WriteLine("------------------------------");
 
