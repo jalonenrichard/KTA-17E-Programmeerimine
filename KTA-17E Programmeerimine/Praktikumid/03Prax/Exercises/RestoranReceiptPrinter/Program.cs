@@ -40,15 +40,7 @@ namespace RestoranReceiptPrinter
             CalculatePrice();
 
             //Display results
-            Console.WriteLine("------------------------------");
-            Console.WriteLine($"Subtotal: €{currentPrice.ToString("#.##")}");
-            
-            Console.WriteLine($"15% Gratuity: €{percentage.ToString("#.##")}");
-
-            Console.WriteLine($"Price: €{totalPrice.ToString("#.##")}");
-            Console.WriteLine("------------------------------");
-            Console.WriteLine("Press any key to continue");
-            Console.ReadLine();
+            DisplayResults();
 
         }
 
@@ -86,6 +78,22 @@ namespace RestoranReceiptPrinter
             currentPrice += 2;
             percentage = currentPrice * 0.15;
             totalPrice = currentPrice - percentage;
+        }
+
+        /// <summary>
+        /// Inform the user about the prices and percentages that we calculated
+        /// </summary>
+        static void DisplayResults()
+        {
+            Console.WriteLine("------------------------------");
+            Console.WriteLine($"Subtotal: €{currentPrice.ToString("#.##")}");
+
+            Console.WriteLine($"15% Gratuity: €{percentage.ToString("#.##")}");
+
+            Console.WriteLine($"Price: €{totalPrice.ToString("#.##")}");
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("Press any key to continue");
+            Console.ReadLine();
         }
     }
 }
