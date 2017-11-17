@@ -20,9 +20,12 @@ namespace DateTimePractice
               *  The Current time is : Thu Aug 03 13:38:58 2017
              */
 
-            Console.WriteLine();
+            Console.WriteLine($"The Current time is: {DateTime.Now}");
 
             #endregion
+
+            Console.ReadKey();
         }
+
     }
 }
