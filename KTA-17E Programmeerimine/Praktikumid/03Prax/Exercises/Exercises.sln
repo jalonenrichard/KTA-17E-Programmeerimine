@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{4A3AF634-41E5-459F-8485-322122D2058E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecimalToBinary", "DecimalToBinary\DecimalToBinary.csproj", "{BAE1FF26-9D7C-4504-9332-6DAC4CBEF84F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestoranReceiptPrinter", "RestoranReceiptPrinter\RestoranReceiptPrinter.csproj", "{F76E5B54-3F90-4A59-8D71-F14C01D6EFD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4A3AF634-41E5-459F-8485-322122D2058E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4A3AF634-41E5-459F-8485-322122D2058E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4A3AF634-41E5-459F-8485-322122D2058E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4A3AF634-41E5-459F-8485-322122D2058E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BAE1FF26-9D7C-4504-9332-6DAC4CBEF84F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BAE1FF26-9D7C-4504-9332-6DAC4CBEF84F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAE1FF26-9D7C-4504-9332-6DAC4CBEF84F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAE1FF26-9D7C-4504-9332-6DAC4CBEF84F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F76E5B54-3F90-4A59-8D71-F14C01D6EFD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F76E5B54-3F90-4A59-8D71-F14C01D6EFD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F76E5B54-3F90-4A59-8D71-F14C01D6EFD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F76E5B54-3F90-4A59-8D71-F14C01D6EFD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
