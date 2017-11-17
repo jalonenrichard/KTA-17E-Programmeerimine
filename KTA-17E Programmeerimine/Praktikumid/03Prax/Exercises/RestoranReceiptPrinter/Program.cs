@@ -35,8 +35,10 @@ namespace RestoranReceiptPrinter
 
             //Ask the user to enter prices until they type -1
             AskInput();
+            //Calculate the price, percentage and the subtotal
             CalculatePrice();
 
+            //Display results
             Console.WriteLine("------------------------------");
             Console.WriteLine($"Subtotal: {currentPrice.ToString("#.##")}");
             
@@ -48,6 +50,10 @@ namespace RestoranReceiptPrinter
             Console.ReadLine();
 
         }
+
+        /// <summary>
+        /// Ask the user to enter a price until they type -1
+        /// </summary>
         static void AskInput()
         {
             while (currentPrice != -1)
@@ -64,6 +70,10 @@ namespace RestoranReceiptPrinter
                 }
             }
         }
+
+        /// <summary>
+        /// Calculate the price, percentage and subtotal
+        /// </summary>
         static void CalculatePrice()
         {
             for (int i = 0; i < foodList.Count; i++)
