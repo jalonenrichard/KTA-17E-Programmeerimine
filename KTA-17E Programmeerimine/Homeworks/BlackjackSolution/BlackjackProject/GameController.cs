@@ -109,6 +109,9 @@ namespace BlackjackProject
                     hihghestScore = player.TotalCount;
                     // And set the player as the winner
                     winner = player;
+                } else if (player.TotalCount == hihghestScore)
+                {
+                    return new Player("");
                 }
             }
             return winner;
@@ -130,6 +133,7 @@ namespace BlackjackProject
             {
                 //Hit
                 DealCards(house, 1);
+                PlayHouseCards(house);
             }
         }
 

@@ -163,7 +163,7 @@ namespace BlackjackProject
             // Pick the winner
             Player winner = gameController.SelectTheWinner();
             // SelectTheWinner returns a blank player with a blank name when it's a tie
-            if (winner.PlayerName == "")
+            if (winner.PlayerName == "" || winner.PlayerName == null)
             {
                 Console.WriteLine("\nIt's a tie");
             }
