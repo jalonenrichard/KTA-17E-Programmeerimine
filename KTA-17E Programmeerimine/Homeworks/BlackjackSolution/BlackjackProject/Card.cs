@@ -4,6 +4,7 @@ using System.Text;
 
 namespace BlackjackProject
 {
+    #region Enums for every possible Card
     /// <summary>
     /// All possible card types
     /// </summary>
@@ -19,8 +20,11 @@ namespace BlackjackProject
     {
         Spades, Hearts, Diamonds, Clubs
     }
+    #endregion
+
     class Card
     {
+        #region Public Properties
         /// <summary>
         /// Suit of the card
         /// </summary>
@@ -35,7 +39,9 @@ namespace BlackjackProject
         /// Numeric value of the card in blackjack
         /// </summary>
         public int CardValue { get; private set; }
+        #endregion
 
+        #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
@@ -47,7 +53,9 @@ namespace BlackjackProject
             this.Type = type;
             AssignCardValue();
         }
+        #endregion
 
+        #region Private Helpers
         /// <summary>
         /// Assign a numeric value to each card for future mathematical operations
         /// </summary>
@@ -88,5 +96,6 @@ namespace BlackjackProject
                     break;
             }
         }
+        #endregion
     }
 }

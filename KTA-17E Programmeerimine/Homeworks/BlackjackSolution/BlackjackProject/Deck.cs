@@ -4,8 +4,6 @@ using System.Text;
 
 namespace BlackjackProject
 {
-
-
     class Deck
     {
         /// <summary>
@@ -13,6 +11,7 @@ namespace BlackjackProject
         /// </summary>
         private List<Card> DeckList = new List<Card>();
 
+        #region Constructor
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -20,16 +19,20 @@ namespace BlackjackProject
         {
             CreateDeck();
         }
+        #endregion
 
+        #region Getters
         /// <summary>
-        /// Getter method
+        /// Getter method for DeckList containing all the cards in the playing deck
         /// </summary>
         /// <returns>Default deck of cards 2 to Ace</returns>
         public List<Card> GetDeckList()
         {
             return DeckList;
         }
+        #endregion
 
+        #region Private Helpers
         /// <summary>
         /// Fill the deck with Card objects
         /// </summary>
@@ -46,5 +49,6 @@ namespace BlackjackProject
                 }
             }
         }
+        #endregion
     }
 }
