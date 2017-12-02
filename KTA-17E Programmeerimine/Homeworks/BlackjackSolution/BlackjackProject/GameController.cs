@@ -7,18 +7,17 @@ namespace BlackjackProject
 {
     class GameController
     {
+
         /// <summary>
         /// The card deck currently in play
         /// </summary>
-        private List<Card> currentList = new List<Card>();
+        private List<Card> currentDeckList = new List<Card>();
+
         /// <summary>
         /// List of all players
         /// </summary>
         private List<Player> playerList = new List<Player>();
-        /// <summary>
-        /// House player for each game
-        /// </summary>
-        public Player house = new Player("House");
+
         #region Constructor
 
         /// <summary>
@@ -32,14 +31,16 @@ namespace BlackjackProject
         #endregion
 
         #region Getters
+
         /// <summary>
-        /// Getter method for shuffled decklist (for testing)
+        /// Getter method for list of players
         /// </summary>
-        /// <returns>List of shuffled cards</returns>
-        public List<Card> GetCurrentList()
+        /// <returns>List of players</returns>
+        public List<Player> GetPlayerList()
         {
-            return currentList;
+            return playerList;
         }
+
         #endregion
 
         #region Public Methods
@@ -51,18 +52,85 @@ namespace BlackjackProject
         {
             // Shuffle the deck
             ShuffleDeck();
-            // Add a house player
-            playerList.Add(house);
-            // Add first 2 cards to each players hand
+            // Go through the list of all players
             foreach (Player player in playerList)
             {
-                DealFirstTwoCards(player, 2);
+                // Add first 2 cards from the deck to each players hand
+                DealCards(player, 2);
             }
         }
 
+        /// <summary>
+        /// Add a player to the list of all players
+        /// </summary>
+        /// <param name="player">Player object</param>
         public void AddPlayer(Player player)
         {
             playerList.Add(player);
+        }
+
+        /// <summary>
+        /// Deal 'cards' amount of cards from the deck to 'player'
+        /// </summary>
+        /// <param name="player">A player from our list of players who we wish to deal cards to</param>
+        /// <param name="cards">Amount of cards to deal to that player</param>
+        public void DealCards(Player player, int cards)
+        {
+            // Add int cards amount of cards from the shuffled list to player's hand and remove the cards from the list
+            for (int i = 0; i < cards; i++)
+            {
+                // Add the current card at position i to players hand
+                player.cardsInHand.Add(currentDeckList[i]);
+                // Add the cards count value to the current value
+                player.TotalCount += AssignCardValue(currentDeckList[i]);
+                // Remove the card from our Deck
+                currentDeckList.RemoveAt(i);
+            }
+        }
+
+        /// <summary>
+        /// Select the winner from the list of players
+        /// </summary>
+        /// <returns>The winner Player object</returns>
+        public Player SelectTheWinner()
+        {
+            // local variable to compare different players results
+            var hihghestScore = 0;
+            // return a blank Player when it's a tie
+            Player winner = new Player("");
+
+            // Go through each player in the list of players
+            foreach (var player in playerList)
+            {
+                // If the player did not go over 21 and it's higher than the current highest score
+                if (player.TotalCount < 22 && player.TotalCount > hihghestScore)
+                {
+                    // Set the new highscore to that of the current players
+                    hihghestScore = player.TotalCount;
+                    // And set the player as the winner
+                    winner = player;
+                }
+            }
+            return winner;
+        }
+
+        /// <summary>
+        /// Play the house NPC role automatically
+        /// </summary>
+        public void PlayHouseCards(Player house)
+        {
+            // If the value of current cards is 17 or over, stand
+            if (house.TotalCount >= 17)
+            {
+                //Stand
+                return;
+            }
+            // If the value is 16 or under, then hit
+            else if (house.TotalCount < 17)
+            {
+                //Hit
+                DealCards(house, 1);
+            }
         }
 
         #endregion
@@ -80,23 +148,40 @@ namespace BlackjackProject
             var deckList = deck.GetDeckList();
             var rnd = new Random();
             // Put all the cards in the unshuffled deck to currentList in a random order
-            currentList = deckList.OrderBy(x => rnd.Next()).ToList();
+            currentDeckList = deckList.OrderBy(x => rnd.Next()).ToList();
         }
 
         /// <summary>
-        /// Deal the first 2 cards to house and player
+        /// Assign a numeric value to each card for future mathematical operations
         /// </summary>
-        private void DealFirstTwoCards(Player player, int cards)
+        private int AssignCardValue(Card card)
         {
-            // Add int cards amount of cards from the shuffled list to player's hand and remove the cards from the list
-            for (int i = 0; i < cards; i++)
+            switch (card.Type)
             {
-                player.AddCardToHand(currentList[i]);
-                currentList.RemoveAt(i);
+                case CardType.Two:
+                    return 2;
+                case CardType.Three:
+                    return 3;
+                case CardType.Four:
+                    return 4;
+                case CardType.Five:
+                    return 5;
+                case CardType.Six:
+                    return 6;
+                case CardType.Seven:
+                    return 7;
+                case CardType.Eight:
+                    return 8;
+                case CardType.Nine:
+                    return 9;
+                case CardType.Ace:
+                    return 11;
+                // Ten, Jack, Queen, King
+                default:
+                    return 10;
             }
-            // And add the card values to TotalCount property of Player object
-            player.AddTotalCount();
         }
+
         #endregion
     }
 }

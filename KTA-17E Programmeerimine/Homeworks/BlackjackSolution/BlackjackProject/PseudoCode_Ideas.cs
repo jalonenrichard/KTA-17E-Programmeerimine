@@ -46,5 +46,29 @@ namespace BlackjackProject
          * Card Values/Scoring
          * It is up to each individual player if an ace is worth 1 or 11. Face cards are 10 and any other card is its pip value.
          */
+
+        // tests
+        //// Default Decklist test
+        //Console.WriteLine("Default decklist: ");
+        //Deck deck = new Deck();
+        //var deckList = deck.GetDeckList();
+        //foreach (var card in deckList)
+        //{
+        //    Console.WriteLine($"{card.Suit} {card.Type}");
+        //}
+        //Console.WriteLine($"Cards in deck: {deckList.Count}");
+
+        //Console.WriteLine("----------");
+
+        //// Randomized decklist test
+        //Console.ForegroundColor = GetRandomConsoleColor();
+        //Console.WriteLine("Shuffled decklist: ");
+        //var randomizedDecklist = gameController.GetDeckList();
+        //foreach (var card in randomizedDecklist)
+        //{
+        //    Console.WriteLine($"{card.Suit} {card.Type}");
+        //}
+        //Console.WriteLine($"Cards in deck: {randomizedDecklist.Count}");
+
     }
 }

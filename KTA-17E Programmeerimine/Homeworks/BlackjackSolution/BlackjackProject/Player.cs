@@ -10,15 +10,23 @@ namespace BlackjackProject
         /// <summary>
         /// List to store Players cards currently in hand
         /// </summary>
-        private List<Card> cardsInHand = new List<Card>();
+        public List<Card> cardsInHand = new List<Card>();
 
         #region Properties
+        /// <summary>
+        /// Name of the player
+        /// </summary>
         public string PlayerName { get; private set; }
 
         /// <summary>
         /// Sum of cards by Blackjack rules
         /// </summary>
-        public int TotalCount { get; private set; }
+        public int TotalCount { get; set; }
+        
+        /// <summary>
+        /// House player identifier
+        /// </summary>
+        public bool IsHouse { get; protected set; }
         #endregion
 
         #region Constructor
@@ -27,7 +35,10 @@ namespace BlackjackProject
         /// </summary>
         public Player(string name)
         {
+            // Assign the name of given player
             PlayerName = name;
+            // Not a house player, House has its own class
+            IsHouse = false;
         }
         #endregion
 
@@ -42,33 +53,5 @@ namespace BlackjackProject
         }
         #endregion
 
-        #region Public Methods
-
-        /// <summary>
-        /// Method to add cards to current hand
-        /// </summary>
-        /// <param name="card">The card that GameController dealt</param>
-        public void AddCardToHand(Card card)
-        {
-            cardsInHand.Add(card);
-        }
-
-        /// <summary>
-        /// Add the values of each card to the TotalCount property
-        /// </summary>
-        public void AddTotalCount()
-        {
-            // If the list is not empty
-            if (cardsInHand.Count != 0)
-            {
-                // Go through the list and add the card values
-                foreach (Card card in cardsInHand)
-                {
-                    TotalCount += card.CardValue;
-                }
-            }
-        }
-
-        #endregion
     }
 }
