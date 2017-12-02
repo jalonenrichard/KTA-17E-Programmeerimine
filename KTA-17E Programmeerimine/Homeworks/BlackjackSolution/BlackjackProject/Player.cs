@@ -12,6 +12,13 @@ namespace BlackjackProject
         /// </summary>
         private List<Card> cardsInHand = new List<Card>();
 
+        #region Properties
+        /// <summary>
+        /// Sum of cards by Blackjack rules
+        /// </summary>
+        public int TotalCount { get; private set; }
+        #endregion
+
         #region Constructor
         /// <summary>
         /// Default constructor
@@ -34,6 +41,7 @@ namespace BlackjackProject
         #endregion
 
         #region Public Methods
+
         /// <summary>
         /// Method to add cards to current hand
         /// </summary>
@@ -42,6 +50,23 @@ namespace BlackjackProject
         {
             cardsInHand.Add(card);
         }
+
+        /// <summary>
+        /// Add the values of each card to the TotalCount property
+        /// </summary>
+        public void AddTotalCount()
+        {
+            // If the list is not empty
+            if (cardsInHand.Count != 0)
+            {
+                // Go through the list and add the card values
+                foreach (Card card in cardsInHand)
+                {
+                    TotalCount += card.CardValue;
+                }
+            }
+        }
+
         #endregion
     }
 }

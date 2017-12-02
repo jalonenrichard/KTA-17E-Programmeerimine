@@ -41,6 +41,7 @@ namespace BlackjackProject
             {
                 Console.WriteLine($"{card.Suit} {card.Type} {card.CardValue}");
             }
+            Console.WriteLine($"Sum of card values: {gameController.house.TotalCount}");
             Console.WriteLine($"Cards in total: {houseHand.Count}");
 
             Console.WriteLine("----------");
@@ -52,8 +53,8 @@ namespace BlackjackProject
             {
                 Console.WriteLine($"{card.Suit} {card.Type} {card.CardValue}");
             }
+            Console.WriteLine($"Sum of card values: {gameController.playerOne.TotalCount}");
             Console.WriteLine($"Cards in total: {playerOneHand.Count}");
-
             Console.ReadKey();
         }
 
