@@ -11,19 +11,14 @@ namespace BlackjackProject
         /// The card deck currently in play
         /// </summary>
         private List<Card> currentList = new List<Card>();
-
-        #region Blackjack Players
         /// <summary>
-        /// House/Dealer
+        /// List of all players
         /// </summary>
-        public Player house = new Player();
-
+        private List<Player> playerList = new List<Player>();
         /// <summary>
-        /// Player 1
+        /// House player for each game
         /// </summary>
-        public Player playerOne = new Player();
-        #endregion
-
+        public Player house = new Player("House");
         #region Constructor
 
         /// <summary>
@@ -56,10 +51,18 @@ namespace BlackjackProject
         {
             // Shuffle the deck
             ShuffleDeck();
+            // Add a house player
+            playerList.Add(house);
+            // Add first 2 cards to each players hand
+            foreach (Player player in playerList)
+            {
+                DealFirstTwoCards(player, 2);
+            }
+        }
 
-            // Hand out the first 2 cards to each player
-            DealFirstTwoCards(house, 2);
-            DealFirstTwoCards(playerOne, 2);
+        public void AddPlayer(Player player)
+        {
+            playerList.Add(player);
         }
 
         #endregion

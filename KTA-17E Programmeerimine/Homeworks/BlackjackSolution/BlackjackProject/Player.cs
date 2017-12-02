@@ -13,6 +13,8 @@ namespace BlackjackProject
         private List<Card> cardsInHand = new List<Card>();
 
         #region Properties
+        public string PlayerName { get; private set; }
+
         /// <summary>
         /// Sum of cards by Blackjack rules
         /// </summary>
@@ -23,9 +25,9 @@ namespace BlackjackProject
         /// <summary>
         /// Default constructor
         /// </summary>
-        public Player()
+        public Player(string name)
         {
-
+            PlayerName = name;
         }
         #endregion
 
