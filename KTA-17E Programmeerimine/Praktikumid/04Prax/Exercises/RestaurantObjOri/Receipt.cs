@@ -18,6 +18,10 @@ namespace RestaurantObjOri
         /// </summary>
         private Restaurant _restaurant { get; set; }
 
+        public double TotalSum { get; private set; }
+
+        private double _discount { get; set; }
+
         /// <summary>
         /// Default Constructor
         /// </summary>
@@ -26,6 +30,7 @@ namespace RestaurantObjOri
         {
             this._tab = tab;
             this._restaurant = restaurant;
+            _discount = 15;
         }
 
         /// <summary>
@@ -45,9 +50,18 @@ namespace RestaurantObjOri
                 tempReceipt += d + " $\n";
             }
             tempReceipt += "----------\n";
+            tempReceipt += "Subtotal: " + _tab.TabSummary + "\n";
+            tempReceipt += _discount + " % discount\n";
+            CalculateDiscount();
             // Finally print the Summary 
-            tempReceipt += "Total: " + _tab.TabSummary + " $";
+            tempReceipt += "Total: " + TotalSum + " $";
             return tempReceipt;
+        }
+
+        private void CalculateDiscount()
+        {
+            TotalSum = _tab.TabSummary - ((_discount/100) * _tab.TabSummary);
+            TotalSum = Math.Round(TotalSum, 2);
         }
     }
 
