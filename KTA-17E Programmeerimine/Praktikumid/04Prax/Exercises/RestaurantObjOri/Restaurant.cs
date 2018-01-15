@@ -11,12 +11,12 @@ namespace RestaurantObjOri
         /// <summary>
         /// Name of the restaurant
         /// </summary>
-        private string RestaurantName { get; set; }
+        public string RestaurantName { get; private set; }
 
         /// <summary>
         /// Address of the restaurant
         /// </summary>
-        private string RestaurantAddress { get; set; }
+        public string RestaurantAddress { get; private set; }
 
         /// <summary>
         /// Default constructor
@@ -36,7 +36,7 @@ namespace RestaurantObjOri
         /// <returns></returns>
         public Receipt GetReceipt(Tab tab)
         {
-            Receipt receipt = new Receipt(tab);
+            Receipt receipt = new Receipt(tab, this);
             return receipt;
         }
     }
