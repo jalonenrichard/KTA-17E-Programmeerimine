@@ -21,10 +21,24 @@ namespace HangmanWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region properties
+
         /// <summary>
         /// Current game of hangman
         /// </summary>
         private HangmanGame hangmanGame { get; set; }
+
+        /// <summary>
+        /// List of all the labels containing a character of the word to be guessed
+        /// </summary>
+        private List<Label> labelList { get; set; }
+
+        /// <summary>
+        /// List of all the buttons containing an alphabet letter
+        /// </summary>
+        private List<Button> buttonList { get; set; }
+
+        #endregion
 
         /// <summary>
         /// Default constructor
@@ -32,6 +46,10 @@ namespace HangmanWPF
         public MainWindow()
         {
             InitializeComponent();
+            // Create a new list to store the labels for revealing purposes/any other later use purposes
+            labelList = new List<Label>();
+            // Create a new list to store the buttons containing letters of the alphabet for later use
+            buttonList = new List<Button>();
             // Start a new game of hangman
             hangmanGame = new HangmanGame();
             // Create the guessing GUI (labels for each letter in the word)
@@ -71,6 +89,9 @@ namespace HangmanWPF
                 // Create the label to store the letter
                 Label label = new Label();
 
+                // Name each label to identify and reveal later
+                label.Name = "GuessChar" + i.ToString();
+
                 // Label styling
                 // if the character is - or ', reveal it right away
                 if (IsSpecialChar(wordToGuess[i]))
@@ -94,6 +115,8 @@ namespace HangmanWPF
 
                 // Add the label to the grid
                 dynamicGrid.Children.Add(label);
+                // Add the label to the list of labels so we can access it later
+                labelList.Add(label);
             }
         }
 
@@ -124,12 +147,17 @@ namespace HangmanWPF
                 ColumnDefinition gridColumn = new ColumnDefinition();
                 gridColumn.Width = GridLength.Auto;
                 dynamicGrid.ColumnDefinitions.Add(gridColumn);
+
+                // Button style
                 Button button = new Button();
                 button.Content = letter;
                 button.Click += AlphabetButton_Click;
                 button.Width = 40;
                 button.Height = 40;
                 button.Margin = new Thickness(1, 1, 1, 1);
+                button.Opacity = 0.8;
+                button.BorderBrush = Brushes.White;
+                button.FontSize = 20;
 
                 // populate the first row
                 if (count < 13)
@@ -146,6 +174,35 @@ namespace HangmanWPF
                 count++;
                 // add the button to the grid
                 dynamicGrid.Children.Add(button);
+                // add the button to the list of buttons for later use
+                buttonList.Add(button);
+            }
+        }
+
+        /// <summary>
+        /// Reveal a specific character of the word the user is trying to guess
+        /// </summary>
+        /// <param name="characterLocationList">indexes of the letters in the word</param>
+        /// <param name="buttonContent">character to reveal</param>
+        public void RevealCharacters(List<int> characterLocationList, Button button)
+        {
+            char c = button.Content.ToString()[0];
+            // Check if the list contains anything
+            if (characterLocationList != null && characterLocationList.Count > 0)
+            {
+                // Set the background color of button to green (correct guess)
+                button.Background = Brushes.Green;
+                // Go through the list
+                foreach (int i in characterLocationList)
+                {
+                    // and 'reveal' the characters
+                    labelList[i].Content = c;
+                }
+            }
+            // Guessed wrong (set background of the button to Red
+            else
+            {
+                button.Background = Brushes.Red;
             }
         }
 
@@ -159,7 +216,7 @@ namespace HangmanWPF
         /// <param name="charToCheck"></param>
         private bool IsSpecialChar(char charToCheck)
         {
-            return charToCheck == '-' || charToCheck == '\'';
+            return charToCheck == '-' || charToCheck == '\'' || charToCheck == ' ';
         }
 
         /// <summary>
@@ -171,10 +228,16 @@ namespace HangmanWPF
         {
             // Since we know the AlphabetButton_Click is called only by buttons, it is safe to cast it as one
             Button button = (Button)sender;
+
+            // If the button has already been pressed
+            if (button.Background == Brushes.Green || button.Background == Brushes.Red) { return; }
+
             // Send the pressed character content to the hangman game object
             hangmanGame.CharacterGuessed(button.Content.ToString());
+            // Reveal the characters if they exist in the word
+            RevealCharacters(hangmanGame.charLocations, button);
         }
-        
+
         #endregion
 
     }

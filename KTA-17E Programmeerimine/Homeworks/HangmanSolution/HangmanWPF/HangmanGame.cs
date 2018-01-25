@@ -30,6 +30,11 @@ namespace HangmanWPF
         /// </summary>
         private List<char> CharactersGuessed { get; set; }
 
+        /// <summary>
+        /// Locations of the characters that need to be revealed
+        /// </summary>
+        public List<int> charLocations { get; private set; }
+
         #endregion
 
         /// <summary>
@@ -56,6 +61,29 @@ namespace HangmanWPF
             NumberOfGuesses++;
             // Add the character to guessed characters list
             CharactersGuessed.Add(guessedChar[0]);
+            // Check if the word contains the guessed char
+            CheckIfContainsChar(guessedChar[0]);
+        }
+
+        /// <summary>
+        /// Check if the word contains a specific letter
+        /// </summary>
+        /// <param name="c">letter to check</param>
+        private void CheckIfContainsChar(char c)
+        {
+            // Create a new list to erase old values each time
+            charLocations = new List<int>();
+            // If the word contains the character, then reveal it
+            if (WordToGuess.Contains(c))
+            {
+                for (int i = 0; i < WordToGuess.Length; i++)
+                {
+                    if (WordToGuess[i] == c)
+                    {
+                        charLocations.Add(i);
+                    }
+                }
+            }
         }
 
     }
