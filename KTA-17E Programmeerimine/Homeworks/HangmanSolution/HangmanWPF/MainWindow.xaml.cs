@@ -15,21 +15,32 @@ using System.Windows.Shapes;
 
 namespace HangmanWPF
 {
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Current game of hangman
+        /// </summary>
+        private HangmanGame hangmanGame { get; set; }
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
             // Start a new game of hangman
-            HangmanGame hangmanGame = new HangmanGame();
+            hangmanGame = new HangmanGame();
             // Create the guessing GUI (labels for each letter in the word)
             CreateWordGuessLabels(hangmanGame.WordToGuess);
             // Create the Alphabet GUI (buttons for each letter in the alphabet)
             CreateAphabetButtons();
         }
+
+        #region GUI populating methods
 
         /// <summary>
         /// Populate the MainGrid with Labels according to the word length
@@ -61,7 +72,6 @@ namespace HangmanWPF
                 Label label = new Label();
 
                 // Label styling
-                //label.Content = wordToGuess[i];
                 // if the character is - or ', reveal it right away
                 if (IsSpecialChar(wordToGuess[i]))
                 {
@@ -85,15 +95,6 @@ namespace HangmanWPF
                 // Add the label to the grid
                 dynamicGrid.Children.Add(label);
             }
-        }
-
-        /// <summary>
-        /// Check if the character is a special character so we can reveal it right away
-        /// </summary>
-        /// <param name="charToCheck"></param>
-        private bool IsSpecialChar(char charToCheck)
-        {
-            return charToCheck == '-' || charToCheck == '\'';
         }
 
         /// <summary>
@@ -125,6 +126,7 @@ namespace HangmanWPF
                 dynamicGrid.ColumnDefinitions.Add(gridColumn);
                 Button button = new Button();
                 button.Content = letter;
+                button.Click += AlphabetButton_Click;
                 button.Width = 40;
                 button.Height = 40;
                 button.Margin = new Thickness(1, 1, 1, 1);
@@ -146,6 +148,34 @@ namespace HangmanWPF
                 dynamicGrid.Children.Add(button);
             }
         }
+
+        #endregion
+
+        #region private helper methods
+
+        /// <summary>
+        /// Check if the character is a special character so we can reveal it right away
+        /// </summary>
+        /// <param name="charToCheck"></param>
+        private bool IsSpecialChar(char charToCheck)
+        {
+            return charToCheck == '-' || charToCheck == '\'';
+        }
+
+        /// <summary>
+        /// Onclicklistener for our buttons
+        /// </summary>
+        /// <param name="sender">the button that was pressed</param>
+        /// <param name="e"></param>
+        private void AlphabetButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Since we know the AlphabetButton_Click is called only by buttons, it is safe to cast it as one
+            Button button = (Button)sender;
+            // Send the pressed character content to the hangman game object
+            hangmanGame.CharacterGuessed(button.Content.ToString());
+        }
+        
+        #endregion
 
     }
 }
