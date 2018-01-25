@@ -10,7 +10,7 @@ namespace HangmanProject
     {
         static void Main(string[] args)
         {
-            
+            Console.WriteLine("Welcome to the game Hangman");
             // TESTS
 
             // TEST the WordGenerator

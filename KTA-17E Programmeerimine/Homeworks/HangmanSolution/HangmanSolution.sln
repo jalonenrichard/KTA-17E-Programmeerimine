@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangmanProject", "HangmanProject\HangmanProject.csproj", "{7991517C-1B03-494F-80C5-7CAD5C0E72CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangmanWPF", "HangmanWPF\HangmanWPF.csproj", "{C17C9616-F9D5-4C98-850A-048CA6AE55C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7991517C-1B03-494F-80C5-7CAD5C0E72CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7991517C-1B03-494F-80C5-7CAD5C0E72CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7991517C-1B03-494F-80C5-7CAD5C0E72CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C17C9616-F9D5-4C98-850A-048CA6AE55C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C17C9616-F9D5-4C98-850A-048CA6AE55C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C17C9616-F9D5-4C98-850A-048CA6AE55C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C17C9616-F9D5-4C98-850A-048CA6AE55C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
