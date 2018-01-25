@@ -23,8 +23,12 @@ namespace HangmanWPF
         public MainWindow()
         {
             InitializeComponent();
-            WordGenerator wg = new WordGenerator();
-            CreateWordGuessLabels(wg.Word);
+            // Start a new game of hangman
+            HangmanGame hangmanGame = new HangmanGame();
+            // Create the guessing GUI (labels for each letter in the word)
+            CreateWordGuessLabels(hangmanGame.WordToGuess);
+            // Create the Alphabet GUI (buttons for each letter in the alphabet)
+            CreateAphabetButtons();
         }
 
         /// <summary>
@@ -34,27 +38,39 @@ namespace HangmanWPF
         private void CreateWordGuessLabels(string wordToGuess)
         {
             // Create a grid to store each word letter
-            Grid dynamicGrid = new Grid();
+            Grid dynamicGrid = WordGrid;
 
             // Grid styling
-            dynamicGrid.Width = WindowMain.Width - 25;
+            dynamicGrid.Width = WindowMain.Width;
+            dynamicGrid.Margin = new Thickness(10, 25, 10, 25);
             dynamicGrid.HorizontalAlignment = HorizontalAlignment.Center;
             dynamicGrid.VerticalAlignment = VerticalAlignment.Top;
 
-            // Only 1 row for the word
+            // Create only 1 row for the word
             RowDefinition gridRow = new RowDefinition();
             dynamicGrid.RowDefinitions.Add(gridRow);
 
             // Go through each letter that the user is trying to guess and populate the grid
-            for (int i = 0; i < wordToGuess.Length; i++) {
-                // Create a new row for the grid with each new letter
+            for (int i = 0; i < wordToGuess.Length; i++)
+            {
+                // Create a new column for each new letter
                 ColumnDefinition gridCol = new ColumnDefinition();
                 dynamicGrid.ColumnDefinitions.Add(gridCol);
+
+                // Create the label to store the letter
                 Label label = new Label();
 
                 // Label styling
                 //label.Content = wordToGuess[i];
-                label.Content = "_";
+                // if the character is - or ', reveal it right away
+                if (IsSpecialChar(wordToGuess[i]))
+                {
+                    label.Content = wordToGuess[i];
+                }
+                else
+                {
+                    label.Content = "_";
+                }
                 label.VerticalAlignment = VerticalAlignment.Center;
                 label.HorizontalAlignment = HorizontalAlignment.Center;
                 label.FontSize = 30;
@@ -69,9 +85,66 @@ namespace HangmanWPF
                 // Add the label to the grid
                 dynamicGrid.Children.Add(label);
             }
+        }
 
-            // Populate the main window with the created grid
-            WindowMain.Content = dynamicGrid;
+        /// <summary>
+        /// Check if the character is a special character so we can reveal it right away
+        /// </summary>
+        /// <param name="charToCheck"></param>
+        private bool IsSpecialChar(char charToCheck)
+        {
+            return charToCheck == '-' || charToCheck == '\'';
+        }
+
+        /// <summary>
+        /// Create buttons for each letter of the alphabet to guess the word
+        /// </summary>
+        private void CreateAphabetButtons()
+        {
+            // Create a new grid to store the alphabet buttons
+            Grid dynamicGrid = AlphabetGrid;
+
+            // Grid styling
+            //dynamicGrid.Width = WindowMain.Width;
+            dynamicGrid.HorizontalAlignment = HorizontalAlignment.Center;
+            dynamicGrid.VerticalAlignment = VerticalAlignment.Bottom;
+
+            // Letters go in 2 rows
+            RowDefinition gridRow = new RowDefinition();
+            dynamicGrid.RowDefinitions.Add(gridRow);
+            RowDefinition gridRow2 = new RowDefinition();
+            dynamicGrid.RowDefinitions.Add(gridRow2);
+
+            // Count variable to populate the columns
+            int count = 0;
+            // Go through each letter of the alphabet and populate the grid
+            foreach (Alphabet letter in Enum.GetValues(typeof(Alphabet)))
+            {
+                ColumnDefinition gridColumn = new ColumnDefinition();
+                gridColumn.Width = GridLength.Auto;
+                dynamicGrid.ColumnDefinitions.Add(gridColumn);
+                Button button = new Button();
+                button.Content = letter;
+                button.Width = 40;
+                button.Height = 40;
+                button.Margin = new Thickness(1, 1, 1, 1);
+
+                // populate the first row
+                if (count < 13)
+                {
+                    Grid.SetRow(button, 0);
+                    Grid.SetColumn(button, count);
+                }
+                // halfway through the alphabet switch to second row
+                else
+                {
+                    Grid.SetRow(button, 1);
+                    Grid.SetColumn(button, count - 13);
+                }
+                count++;
+                // add the button to the grid
+                dynamicGrid.Children.Add(button);
+            }
         }
 
     }

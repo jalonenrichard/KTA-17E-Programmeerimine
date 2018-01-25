@@ -7,4 +7,12 @@
         mc:Ignorable="d"
         Title="Hangman" Height="400" Width="600"
         x:Name="WindowMain" ResizeMode="NoResize">
+    <Grid x:Name="MainGrid">
+        <Grid x:Name="WordGrid">
+
+        </Grid>
+        <Grid x:Name="AlphabetGrid">
+
+        </Grid>
+    </Grid>
 </Window>
