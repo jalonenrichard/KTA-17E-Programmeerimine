@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -12,7 +14,7 @@ namespace HangmanProject
         /// <summary>
         /// Randomly generated word
         /// </summary>
-        public string Word { get; set; }
+        public string Word { get; private set; }
 
         /// <summary>
         /// JSON response URL to get the word from
@@ -24,7 +26,7 @@ namespace HangmanProject
         /// </summary>
         public WordGenerator()
         {
-            // When WordGenerator object is created, create a random word
+            // When WordGenerator object is created, generate a random word
             GenerateWord();
         }
 
@@ -36,8 +38,18 @@ namespace HangmanProject
             WebClient client = new WebClient();
             // get a JSON response with a single random word
             string downloadedJsonString = client.DownloadString(_wordURL);
-
-            this.Word = downloadedJsonString;
+            // the JSON string we get is a JArray type, parse it
+            var arr = JArray.Parse(downloadedJsonString);
+            // go through the JArray
+            foreach(var item in arr)
+            {
+                // select the field with a header "word"
+                string word = JsonConvert.SerializeObject(item.SelectToken("word"));
+                // remove quotation marks and trim
+                word = word.Replace("\u0022", "").Trim();
+                // save it as the random word
+                this.Word = word;
+            }
         }
     }
 }
