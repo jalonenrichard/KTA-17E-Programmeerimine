@@ -210,6 +210,7 @@ namespace HangmanWPF
             {
                 // Set the background color of button to green (correct guess)
                 button.Foreground = Brushes.LightGreen;
+                button.IsEnabled = false;
 
                 // Go through the list
                 foreach (int i in characterLocationList)
@@ -238,6 +239,7 @@ namespace HangmanWPF
             else
             {
                 button.Foreground = Brushes.Red;
+                button.IsEnabled = false;
                 hangmanGame.AddToMistakeCunter();
                 // If the user has guessed wrong 10 times
                 if (hangmanGame.GameOver)
