@@ -11,7 +11,9 @@
         <Grid x:Name="WordGrid">
 
         </Grid>
+        <Button x:Name="NewGameButton" Click="NewGameButton_Click" Width="100" Height="25" Content="New Game" VerticalAlignment="Center" HorizontalAlignment="Center" BorderBrush="White"/>
         <Grid x:Name="AlphabetGrid">
+            
 
         </Grid>
     </Grid>

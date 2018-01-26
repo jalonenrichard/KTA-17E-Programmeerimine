@@ -35,6 +35,11 @@ namespace HangmanWPF
         /// </summary>
         public List<int> charLocations { get; private set; }
 
+        /// <summary>
+        /// To know that the game is over
+        /// </summary>
+        public bool GameOver { get; private set; }
+
         #endregion
 
         /// <summary>
@@ -51,6 +56,8 @@ namespace HangmanWPF
             WordToGuess = wg.Word;
         }
 
+        #region methods
+
         /// <summary>
         /// The character our user tried to guess
         /// </summary>
@@ -63,6 +70,18 @@ namespace HangmanWPF
             CharactersGuessed.Add(guessedChar[0]);
             // Check if the word contains the guessed char
             CheckIfContainsChar(guessedChar[0]);
+        }
+
+        /// <summary>
+        /// Add +1 to the mistake counter
+        /// </summary>
+        public void AddToMistakeCunter()
+        {
+            MistakeCounter++;
+            if (MistakeCounter >= 10)
+            {
+                GameOver = true;
+            }
         }
 
         /// <summary>
@@ -86,5 +105,6 @@ namespace HangmanWPF
             }
         }
 
+        #endregion
     }
 }
