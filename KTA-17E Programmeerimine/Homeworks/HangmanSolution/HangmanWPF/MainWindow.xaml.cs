@@ -170,12 +170,12 @@ namespace HangmanWPF
                 Button button = new Button();
                 button.Content = letter;
                 button.Click += AlphabetButton_Click;
-                button.Width = 40;
-                button.Height = 40;
-                button.Margin = new Thickness(1, 1, 1, 1);
-                button.Opacity = 0.8;
-                button.BorderBrush = Brushes.White;
-                button.FontSize = 20;
+                //button.Width = 40;
+                //button.Height = 40;
+                //button.Margin = new Thickness(1, 1, 1, 1);
+                //button.Opacity = 0.8;
+                //button.BorderBrush = Brushes.White;
+                //button.FontSize = 20;
 
                 // populate the first row
                 if (count < 13)
@@ -209,7 +209,8 @@ namespace HangmanWPF
             if (characterLocationList != null && characterLocationList.Count > 0)
             {
                 // Set the background color of button to green (correct guess)
-                button.Background = Brushes.Green;
+                button.Foreground = Brushes.LightGreen;
+
                 // Go through the list
                 foreach (int i in characterLocationList)
                 {
@@ -236,7 +237,7 @@ namespace HangmanWPF
             // Guessed wrong (set background of the button to Red)
             else
             {
-                button.Background = Brushes.Red;
+                button.Foreground = Brushes.Red;
                 hangmanGame.AddToMistakeCunter();
                 // If the user has guessed wrong 10 times
                 if (hangmanGame.GameOver)
