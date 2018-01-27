@@ -56,6 +56,8 @@ namespace HangmanWPF
         /// </summary>
         private void StartNewGame()
         {
+            // Disable the New Game button so the user can't spam it
+            NewGameButton.IsEnabled = false;
             // Create a new list to store the labels for revealing purposes/any other later use purposes
             labelList = new List<Label>();
             // Create a new list to store the buttons containing letters of the alphabet for later use
@@ -270,20 +272,20 @@ namespace HangmanWPF
             // if the user lost the game
             if (hangmanGame.GameOver)
             {
-                // Show a message box with the results and clear the alphabet button grid so they cannot continue playing
+                // Show a message box with the results
                 MessageBox.Show($"Game over\nWord: {hangmanGame.WordToGuess} \nGuesses:  {hangmanGame.NumberOfGuesses} \nMistakes: {hangmanGame.MistakeCounter}");
-                AlphabetGrid.Children.Clear();
             }
             // if the user won the game
             else
             {
-                // Show a message box with the results and clear the alphabet button grid so they cannot continue playing
+                // Show a message box with the results
                 MessageBox.Show($"YOU WIN\nWord: {hangmanGame.WordToGuess} \nGuesses:  {hangmanGame.NumberOfGuesses} \nMistakes: {hangmanGame.MistakeCounter}");
-                AlphabetGrid.Children.Clear();
             }
-
+            // clear the alphabet button grid so they cannot continue playing
+            AlphabetGrid.Children.Clear();
+            // enable the New Game button so they can start a new game if they wish
+            NewGameButton.IsEnabled = true;
         }
-
         #endregion
 
         #region Button ClickListeners
