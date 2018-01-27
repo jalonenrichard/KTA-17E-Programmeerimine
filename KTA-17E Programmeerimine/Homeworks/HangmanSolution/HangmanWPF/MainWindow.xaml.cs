@@ -57,7 +57,7 @@ namespace HangmanWPF
         private void StartNewGame()
         {
             // Disable the New Game button so the user can't spam it
-            NewGameButton.IsEnabled = false;
+            NewGameButton.Visibility = Visibility.Hidden;
             // Create a new list to store the labels for revealing purposes/any other later use purposes
             labelList = new List<Label>();
             // Create a new list to store the buttons containing letters of the alphabet for later use
@@ -284,7 +284,7 @@ namespace HangmanWPF
             // clear the alphabet button grid so they cannot continue playing
             AlphabetGrid.Children.Clear();
             // enable the New Game button so they can start a new game if they wish
-            NewGameButton.IsEnabled = true;
+            NewGameButton.Visibility = Visibility.Visible;
         }
         #endregion
 
