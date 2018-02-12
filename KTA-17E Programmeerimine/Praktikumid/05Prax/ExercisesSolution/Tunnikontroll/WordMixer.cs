@@ -75,6 +75,9 @@ namespace Tunnikontroll
                 stringBuilder.Insert(0, word[0]);
                 stringBuilder.Insert(word.Length - 1, word[word.Length - 1]);
                 MixedWords.Add(stringBuilder.ToString());
+            } else
+            {
+                MixedWords.Add(word);
             }
 
         }
