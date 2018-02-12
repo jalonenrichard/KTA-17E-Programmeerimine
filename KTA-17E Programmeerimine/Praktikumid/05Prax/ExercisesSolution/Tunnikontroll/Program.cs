@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Tunnikontroll
 {
@@ -6,7 +7,18 @@ namespace Tunnikontroll
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Programm muudab etteantud lause sonades tähtede järjekorra");
+            Console.Write("Sisesta lause: ");
+            string userInput = Console.ReadLine();
+
+            WordMixer wordMixer = new WordMixer(userInput);
+            wordMixer.MixWords();
+
+            foreach(string word in wordMixer.MixedWords)
+            {
+                Console.Write (word + " ");
+            }
+            Console.ReadKey();
         }
     }
 }
