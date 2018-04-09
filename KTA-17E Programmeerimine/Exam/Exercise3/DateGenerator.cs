@@ -18,23 +18,9 @@ namespace Exercise3
 
         public DateTime GenerateRandomDay()
         {
-            DateTime outputDate = new DateTime();
-            bool successfulGeneration = false;
-            while (!successfulGeneration)
-            {
-                try
-                {
-                    Random r = new Random();
-                    outputDate = new DateTime(r.Next(MinYear, MaxYear), r.Next(1, 13), r.Next(1, 32), r.Next(0, 24), r.Next(0, 60), r.Next(0, 60));
-                    successfulGeneration = true;
-                }
-                catch
-                {
-
-                }
-            }
-            return outputDate;
-
+            int year, month;
+            Random r = new Random();
+            return new DateTime(year = r.Next(MinYear, MaxYear), month = r.Next(1, 13), r.Next(1, DateTime.DaysInMonth(year, month) + 1), r.Next(0, 24), r.Next(0, 60), r.Next(0, 60));
         }
     }
 }
