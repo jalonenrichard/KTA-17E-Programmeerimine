@@ -11,7 +11,7 @@ namespace Exercise4
 
         static void Main(string[] args)
         {
-            PopulateDateList(10, 1940, 2010);
+            PopulateDateList(30, 1940, 2010);
 
             Console.WriteLine("Original list: ");
             foreach (var item in dateList)
