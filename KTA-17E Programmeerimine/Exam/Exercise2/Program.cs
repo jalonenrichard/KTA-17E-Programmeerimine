@@ -19,6 +19,8 @@ namespace Exercise2
 
             Console.WriteLine("V2ljund: " + MakeNamesCapital(userInput));
 
+            Console.WriteLine();
+            Console.WriteLine("Vajuta ykskoik millist nuppu, et v2ljuda programmist.");
             Console.ReadKey();
         }
 
