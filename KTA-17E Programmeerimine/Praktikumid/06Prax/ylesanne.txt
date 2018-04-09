@@ -1,0 +1,5 @@
+votta sisse mingisugune tekst ja anda valja selle teksti Caesari cipheriga krypteeritud tekst
+
+kolm - annad sisse teksti ja prindib valja krypteeritud kuju
+neli - encrypt decrypt eraldi meetodid eraldi caesarcipher classis
+viis - saab valida, kumba pidi teha
