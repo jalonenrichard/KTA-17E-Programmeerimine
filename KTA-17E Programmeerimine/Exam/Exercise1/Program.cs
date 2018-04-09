@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Exercise1
 {
@@ -8,16 +9,14 @@ namespace Exercise1
     {
         static void Main(string[] args)
         {
-            /*
-               Luua programm mis küsib inimeste nimesi niikaua kuni sisestatakse erimärk „-1“. 
-               Iga sisestatud nimi lisatakse massiivi mis kuvatakse kasutajale programmi lõpus välja. 
-               Kindlasti tuleb veenduda, et esimene täht oleks suur. Selle võid lahendada nii, 
-               et palud kasutajal sisestada sisendi õigel kujul või siis vaikimisi teed programmis esimese tähe alati suureks.
-             */
+            //Program decription
             Console.WriteLine("Programm kysib teilt nimesid kuni sisestate -1 ning hiljem kuvab koik sisestatud nimed.");
             Console.WriteLine();
 
+            //Ask for user input and save it into a List of strings
             List<string> nameList = new List<string>(AskNames());
+
+            //Print out the output
             if (nameList.Any())
             {
                 Console.WriteLine();
@@ -43,11 +42,26 @@ namespace Exercise1
             string userInput = "";
             while (userInput != "-1")
             {
+                string nimi = "";
                 Console.Write("Sisesta nimi: ");
                 userInput = Console.ReadLine().Trim();
                 if (userInput != "-1" && userInput != "")
                 {
-                    nameList.Add(userInput);
+                    // Kui mitu nime
+                    if (userInput.Contains(" "))
+                    {
+                        string[] nimed = userInput.Split(' ');
+                        foreach (string name in nimed)
+                        {
+                            nimi += char.ToUpper(name[0]) + name.Substring(1).ToLower() + " ";
+                        }
+                        nameList.Add(nimi);
+                    }
+                    else
+                    {
+                        nimi = char.ToUpper(userInput[0]) + userInput.Substring(1).ToLower();
+                        nameList.Add(nimi);
+                    }
                 }
             }
             return nameList;
