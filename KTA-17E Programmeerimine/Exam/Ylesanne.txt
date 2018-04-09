@@ -1,0 +1,44 @@
+Ülesanne 1
+
+Luua programm mis küsib inimeste nimesi niikaua kuni sisestatakse erimärk „-1“. 
+Iga sisestatud nimi lisatakse massiivi mis kuvatakse kasutajale programmi lõpus välja. 
+Kindlasti tuleb veenduda, et esimene täht oleks suur. Selle võid lahendada nii, 
+et palud kasutajal sisestada sisendi õigel kujul või siis vaikimisi teed programmis esimese tähe alati suureks.
+
+ 
+Ülesanne 2
+
+Sul on programmis defineeritud massiiv järgnevate nimedega: Kaur, Mattias, Kristel, Heleri, Trevor, Kristjan, Kelli, Kevin, Maarika, Laura.
+
+ 
+
+Programm küsib kasutaja käest sisendit. Sisendiks võib olla üks sõna, lause või miks mitte ka 10 lauset. 
+Ülesanne on kasutajale programmi lõpus kuvada tema sisestatud sisend, aga nii, et kõik nimed oleks kindlasti suure algustähega.
+
+ 
+
+Näiteks kui kasutaja sisestab teksti: „kevin ja heleri mängisid koos liivakastis. trevor vaatas pealt ning kristel kiikus.“ 
+siis tulemuseks peab olema: „Kevin ja Heleri mängisid koos liivakastis. Trevor vaatas pealt ning Kristel kiikus.“
+
+ 
+
+Ülesanne 3
+
+Proramm küsib kasutaja käest kolme sisendit: a) minimaalne aasta arv, b) maksimaalne aasta arv, c) suvaliselt genereeritavate andmete hulka.
+
+ 
+
+Vastavalt sisestatud andmetele genereeritakse suvalislet etteantud vahemikus ja hulgal timestamp’e.
+
+ 
+
+Ülesanne 4
+
+Programmis on defineeritud masiiv mis sisaldab umbes 30 erinevat timestamp’i mis illustreerivad inimeste sünniaega, 
+näiteks vahemikus alates 1940 – 2010. Programmi ülesanne on leida nende timestamp’ide põhjal:
+
+    maksimaalne vanus
+    keskmine vanus aastates
+    minimaalne vanus
+    millisel kuul on kõige rohkem sünnipäevi
+    kõik timestamp’id sorteerituna kasvavalt
